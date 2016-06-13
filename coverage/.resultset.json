@@ -5,10 +5,14 @@
         1,
         null
       ],
-      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/home_controller.rb": [
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/models/challenge.rb": [
+        1,
+        null
+      ],
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/challenges_controller.rb": [
         1,
         1,
-        null,
+        1,
         null,
         null
       ],
@@ -18,8 +22,14 @@
         null,
         1,
         null
+      ],
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/home_controller.rb": [
+        0,
+        0,
+        0,
+        0
       ]
     },
-    "timestamp": 1465861053
+    "timestamp": 1465861798
   }
 }
