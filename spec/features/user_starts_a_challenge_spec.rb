@@ -1,12 +1,15 @@
 require 'rails_helper'
 
-feature 'User visits challenge page' do
+feature 'User starts a challenge' do
   scenario 'successfully' do
-    login_as create(:user)
+    user = create(:user)
+    login_as user
     challenge = create(:challenge)
     visit challenge_path(challenge)
 
+    click_on 'Iniciar'
+
     expect(page).to have_content challenge.title
-    expect(page).to have_content challenge.description
+    expect(page).to have_content 'Iniciado'
   end
 end

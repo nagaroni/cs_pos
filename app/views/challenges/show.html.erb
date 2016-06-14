@@ -1,2 +1,8 @@
 <h1><%= @challenge.title %></h1>
 <p><%= @challenge.description %></p>
+
+<% if current_user && @challenge.started_by?(current_user)%>
+  <span>Iniciado</span>
+<% else %>
+  <%= link_to 'Iniciar', start_challenge_path(@challenge), method: :post %>
+<% end %>
