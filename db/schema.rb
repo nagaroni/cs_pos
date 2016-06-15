@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614004539) do
+ActiveRecord::Schema.define(version: 20160615011433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,11 +24,20 @@ ActiveRecord::Schema.define(version: 20160614004539) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "solutions", force: :cascade do |t|
+    t.integer  "started_challenge_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "solutions", ["started_challenge_id"], name: "index_solutions_on_started_challenge_id", using: :btree
+
   create_table "started_challenges", force: :cascade do |t|
     t.integer  "challenge_id"
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "finished_at"
   end
 
   add_index "started_challenges", ["challenge_id"], name: "index_started_challenges_on_challenge_id", using: :btree
@@ -53,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160614004539) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "solutions", "started_challenges"
   add_foreign_key "started_challenges", "challenges"
   add_foreign_key "started_challenges", "users"
 end

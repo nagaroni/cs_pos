@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :started_challenge do
-    challenge nil
-    user nil
+    challenge
+    user
   end
 end
