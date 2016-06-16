@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 describe ChallengeTerminator do
-  subject { described_class.new(model_solution, finished_at) }
-  let(:model_solution) { double(:model_solution) }
+  subject { described_class.new(finished_at) }
   let(:finished_at) { Time.zone.now }
 
   describe '#terminate' do
@@ -12,9 +11,7 @@ describe ChallengeTerminator do
       solution          = double(:solution)
       challenge         = spy(:challenge)
       allow(challenge).to receive(:started_by?).and_return(started_challenge)
-      allow(model_solution)
-        .to receive(:create)
-        .with(started_challenge: started_challenge).and_return(solution)
+      expect(started_challenge).to receive(:create_solution).and_return(solution)
       expect(started_challenge)
         .to receive(:update).with(finished_at: finished_at)
       expect(subject.terminate(challenge, user)).to eq solution
