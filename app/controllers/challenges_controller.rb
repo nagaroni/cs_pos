@@ -1,13 +1,11 @@
 class ChallengesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_challenge, only: [:show, :finalize, :start]
+  before_action :set_challenge, only: [:show, :complete, :start]
 
   def show
   end
 
-  def finalize
-    # @started_challenge = @challenge.started_by?(current_user)
-    # @solution = @started_challenge.finalize!
+  def complete
     @solution = ChallengeTerminator.new.terminate(@challenge, current_user)
     redirect_to @solution
   end
