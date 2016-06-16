@@ -10,6 +10,7 @@ feature 'User finalizes a challenge' do
 
     click_on 'Finalizar'
 
-    expect(page).to have_content "Parabéns, desafio #{challenge.title}, concluído!"
+    expect(page)
+      .to have_content "Parabéns, desafio #{challenge.title}, concluído!"
   end
 end

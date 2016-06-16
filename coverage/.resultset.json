@@ -13,80 +13,94 @@
         1,
         null
       ],
-      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/models/challenge.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        8,
-        null,
-        null
-      ],
-      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/models/started_challenge.rb": [
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/services/challenge_terminator.rb": [
         1,
         1,
         1,
         1,
         null,
-        1,
-        2,
-        2,
         null,
-        null
-      ],
-      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/home_controller.rb": [
+        1,
+        1,
         1,
         1,
         null,
+        null,
+        1,
+        null,
+        1,
         null
       ],
       "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/application_controller.rb": [
-        1,
-        null,
-        null,
-        1,
-        null
+        0,
+        0,
+        0,
+        0,
+        0
       ],
       "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/challenges_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        1,
-        6,
-        null,
-        null
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ],
-      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/models/solution.rb": [
-        1,
-        1,
-        null
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/home_controller.rb": [
+        0,
+        0,
+        0,
+        0
       ],
       "/Users/alanrrb/workspace/pos_campus/cs_pos/app/controllers/solutions_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        null
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/models/challenge.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/models/solution.rb": [
+        0,
+        0,
+        0
+      ],
+      "/Users/alanrrb/workspace/pos_campus/cs_pos/app/models/started_challenge.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
       ]
     },
-    "timestamp": 1465954244
+    "timestamp": 1466039008
   }
 }
