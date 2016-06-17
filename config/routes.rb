@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
 
-  resources :challenges, only: [:show] do
-    post 'start', on: :member
-    post 'complete', on: :member
+  resources :challenges,  only: [:show] do
+    post 'start',         on: :member
+    post 'complete',      on: :member
     concerns :commentable
   end
 
