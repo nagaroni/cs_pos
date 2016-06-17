@@ -7,3 +7,15 @@
 <% else %>
   <%= link_to 'Iniciar', start_challenge_path(@challenge), method: :post %>
 <% end %>
+
+<% @challenge.comments.each do |comment| %>
+  <small>Comentado por: <%= comment.user.login %></small>
+  <p><%= comment.body %></p>
+<% end %>
+
+<%= form_for [@challenge, @challenge.comments.build] do |f| %>
+  <%= f.label :body, 'Comentário' %>
+  <%= f.text_field :body %>
+  <%= f.submit 'Comentar' %>
+<% end %>
+

@@ -11,7 +11,8 @@ describe ChallengeTerminator do
       solution          = double(:solution)
       challenge         = spy(:challenge)
       allow(challenge).to receive(:started_by?).and_return(started_challenge)
-      expect(started_challenge).to receive(:create_solution).and_return(solution)
+      expect(started_challenge)
+        .to receive(:create_solution).and_return(solution)
       expect(started_challenge)
         .to receive(:update).with(finished_at: finished_at)
       expect(subject.terminate(challenge, user)).to eq solution
