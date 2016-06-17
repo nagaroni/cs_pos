@@ -4,6 +4,10 @@ class Challenge < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   def started_by?(user)
+    started_challenge_for(user)
+  end
+
+  def started_challenge_for(user)
     started_challenges.find_by(user: user)
   end
 end

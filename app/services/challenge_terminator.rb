@@ -4,7 +4,7 @@ class ChallengeTerminator
   end
 
   def terminate(challenge, user)
-    started_challenge = challenge.started_by?(user)
+    started_challenge = challenge.started_challenge_for(user)
     started_challenge.update(finished_at: finished_at, points: challenge.points)
     started_challenge.create_solution
   end
