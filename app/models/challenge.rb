@@ -4,7 +4,7 @@ class Challenge < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   def started_by?(user)
-    !!started_challenge_for(user)
+    !started_challenge_for(user).nil?
   end
 
   def started_challenge_for(user)
