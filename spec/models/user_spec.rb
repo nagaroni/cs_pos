@@ -13,7 +13,7 @@ describe User do
       started_challenge = create(:started_challenge, user: user, points: 10)
       challenge = started_challenge.challenge
       solution = challenge.started_challenges
-        .create(user: create(:user), points: 0).create_solution
+                          .create(user: create(:user), points: 0).create_solution
       solution.comments.create(user: user)
       expect(user.points).to eq 15
     end

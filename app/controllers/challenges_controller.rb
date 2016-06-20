@@ -6,8 +6,9 @@ class ChallengesController < ApplicationController
   end
 
   def complete
-    @solution = ChallengeTerminator.new.terminate(@challenge, current_user)
-    redirect_to @solution
+    completer = ChallengeCompleter.new
+    finalized_challenge = completer.complete(@challenge, current_user)
+    redirect_to finalized_challenge.solution
   end
 
   def start

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   def comments_points
     comments.where(commentable_type: 'Solution')
-      .where.not(commentable_id: solution_ids).count * Comment::POINTS
+            .where.not(commentable_id: solution_ids).count * Comment::POINTS
   end
 
   def challenge_points
