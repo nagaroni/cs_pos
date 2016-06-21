@@ -8,17 +8,10 @@ class User < ActiveRecord::Base
   has_many :solutions, through: :started_challenges
 
   def points
-    comments_points + challenge_points
+    PointsCalculator.new(self).calculate
   end
 
-  private
-
-  def comments_points
-    comments.where(commentable_type: 'Solution')
-            .where.not(commentable_id: solution_ids).count * Comment::POINTS
-  end
-
-  def challenge_points
-    started_challenges.inject(0) { |a, e| a + e.points }
+  def solution_comments
+    CommentsQuery.new(self).query
   end
 end
