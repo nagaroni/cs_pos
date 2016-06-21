@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ChallengesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_challenge, only: [:show, :complete, :start]

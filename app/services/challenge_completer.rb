@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ChallengeCompleter
   def initialize(finished_at = Time.zone.now)
     @finished_at = finished_at

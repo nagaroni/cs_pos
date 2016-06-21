@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class StartedChallenge < ActiveRecord::Base
   belongs_to :challenge
   belongs_to :user
