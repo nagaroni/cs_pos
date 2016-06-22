@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
+gem 'simple_form'
 
 group :development, :test do
   gem 'awesome_print'
@@ -19,6 +20,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov', require: false
   gem 'rubocop', require: false
+  gem 'formulaic'
 end
 
 group :test do

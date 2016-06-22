@@ -1,0 +1,5 @@
+pt-BR:
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} foi criado com sucesso!"

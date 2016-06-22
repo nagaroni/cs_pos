@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      challenge: Desafio
+    attributes:
+      challenge:
+        title: Titulo
+
+  challenges:
+    show:
+      page_title: Desafio
+  helpers:
+    submit:
+      challenge:
+        create: Criar

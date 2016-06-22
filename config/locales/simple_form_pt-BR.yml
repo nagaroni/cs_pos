@@ -1,0 +1,13 @@
+pt-BR:
+  simple_form:
+    labels:
+      challenge:
+        title: Título
+        description: Descrição
+        points: Pontos
+    placeholders:
+      challenge:
+        title: Titulo do nosso desafio
+    hints:
+      challenge:
+        title: Titulo com 50 caracteres (max)

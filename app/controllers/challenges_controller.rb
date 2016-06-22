@@ -6,6 +6,15 @@ class ChallengesController < ApplicationController
   def show
   end
 
+  def new
+    @challenge = Challenge.new
+  end
+
+  def create
+    @challenge = Challenge.create(challenge_params)
+    respond_with @challenge
+  end
+
   def complete
     completer = ChallengeCompleter.new
     finalized_challenge = completer.complete(@challenge, current_user)
@@ -18,6 +27,10 @@ class ChallengesController < ApplicationController
   end
 
   private
+
+  def challenge_params
+    params.require(:challenge).permit(:title, :points, :description)
+  end
 
   def set_challenge
     @challenge = Challenge.find(params[:id])
