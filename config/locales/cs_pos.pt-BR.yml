@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      comment: Comentário
+      challenge: Desafio
+    attributes:
+      challenge:
+        title: Titulo
+      comment:
+        body: Comentário
+
+
+  challenges:
+    show:
+      page_title: Desafio
+  helpers:
+    submit:
+      challenge:
+        create: Criar
+      comment:
+        create: Comentar

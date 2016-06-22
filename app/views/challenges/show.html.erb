@@ -16,8 +16,8 @@
 <% end %>
 
 <%= form_for [@challenge, @challenge.comments.build] do |f| %>
-  <%= f.label :body, 'Comentário' %>
+  <%= f.label :body %>
   <%= f.text_field :body %>
-  <%= f.submit 'Comentar' %>
+  <%= f.submit %>
 <% end %>
 
