@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 feature 'User creates a challenge' do
@@ -7,6 +8,6 @@ feature 'User creates a challenge' do
     visit new_challenge_path
     fill_form_and_submit(:challenge, :new, attributes_for(:challenge))
 
-    expect(page).to have_content "com sucesso"
+    expect(page).to have_content 'com sucesso'
   end
 end
