@@ -1,0 +1,4 @@
+<% model.comments.includes(:user).each do |comment| %>
+  <small>Comentado por: <%= comment.user.login %></small>
+  <p><%= comment.body %></p>
+<% end %>

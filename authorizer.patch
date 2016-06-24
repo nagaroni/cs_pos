@@ -1,0 +1,158 @@
+diff --git c/app/controllers/application_controller.rb w/app/controllers/application_controller.rb
+index 630ccea..d38ecb0 100644
+--- c/app/controllers/application_controller.rb
++++ w/app/controllers/application_controller.rb
+@@ -1,5 +1,5 @@
+ # frozen_string_literal: true
+-require "application_responder"
++require 'application_responder'
+ 
+ class ApplicationController < ActionController::Base
+   self.responder = ApplicationResponder
+diff --git c/app/controllers/solutions_controller.rb w/app/controllers/solutions_controller.rb
+index 388921f..234922d 100644
+--- c/app/controllers/solutions_controller.rb
++++ w/app/controllers/solutions_controller.rb
+@@ -1,6 +1,20 @@
+ # frozen_string_literal: true
+ class SolutionsController < ApplicationController
++  before_action :authenticate_user!
++  before_action :authorize!, only: [:show]
++
+   def show
++  end
++
++  private
++
++  def solution
+     @solution = Solution.find(params[:id])
+   end
++
++  def authorize!
++    unless SolutionAuthorizer.new(current_user, solution).authorized?
++      redirect_to root_path
++    end
++  end
+ end
+diff --git c/app/policies/solution_authorizer.rb w/app/policies/solution_authorizer.rb
+new file mode 100644
+index 0000000..84b50cc
+--- /dev/null
++++ w/app/policies/solution_authorizer.rb
+@@ -0,0 +1,21 @@
++# frozen_string_literal: true
++class SolutionAuthorizer
++  def initialize(user, solution)
++    @user     = user
++    @solution = solution
++  end
++
++  def authorized?
++    started_challenge.solution if !!started_challenge
++  end
++
++  private
++
++  def started_challenge
++    user
++      .started_challenges
++      .find_by(challenge: solution.started_challenge.challenge)
++  end
++
++  attr_reader :user, :solution
++end
+diff --git c/lib/application_responder.rb w/lib/application_responder.rb
+index cc3e588..474e823 100644
+--- c/lib/application_responder.rb
++++ w/lib/application_responder.rb
+@@ -1,3 +1,4 @@
++# frozen_string_literal: true
+ class ApplicationResponder < ActionController::Responder
+   include Responders::FlashResponder
+   include Responders::HttpCacheResponder
+diff --git c/spec/features/user_creates_a_challenge_spec.rb w/spec/features/user_creates_a_challenge_spec.rb
+index 9c501c5..f30f894 100644
+--- c/spec/features/user_creates_a_challenge_spec.rb
++++ w/spec/features/user_creates_a_challenge_spec.rb
+@@ -1,3 +1,4 @@
++# frozen_string_literal: true
+ require 'rails_helper'
+ 
+ feature 'User creates a challenge' do
+@@ -7,6 +8,6 @@ feature 'User creates a challenge' do
+     visit new_challenge_path
+     fill_form_and_submit(:challenge, :new, attributes_for(:challenge))
+ 
+-    expect(page).to have_content "com sucesso"
++    expect(page).to have_content 'com sucesso'
+   end
+ end
+diff --git c/spec/features/user_sees_solution_spec.rb w/spec/features/user_sees_solution_spec.rb
+new file mode 100644
+index 0000000..9d5a8e6
+--- /dev/null
++++ w/spec/features/user_sees_solution_spec.rb
+@@ -0,0 +1,39 @@
++# frozen_string_literal: true
++require 'rails_helper'
++
++feature 'User access other\'s solution' do
++  context 'without create his own solution' do
++    scenario 'and is redirect to root page' do
++      user = create(:user, email: 'mail@mail.com')
++      started_challenge = create(:started_challenge, user: user)
++      solution = create(:solution, started_challenge: started_challenge)
++      login_as create(:user)
++
++      visit solution_path(solution)
++
++      expect(page)
++        .not_to have_content solution.started_challenge.challenge.title
++      expect(current_path).to eq root_path
++    end
++  end
++
++  context 'after create his own solution' do
++    scenario 'and see it successfully' do
++      user = create(:user)
++      started_challenge = create(:started_challenge, user: user)
++      solution = create(:solution, started_challenge: started_challenge)
++
++      other_user = create(:user, email: 'mail@mail.com')
++      create(:solution,
++             started_challenge: create(:started_challenge,
++                                       challenge: started_challenge.challenge,
++                                       user: other_user))
++
++      login_as other_user
++
++      visit solution_path(solution)
++
++      expect(page).to have_content solution.started_challenge.challenge.title
++    end
++  end
++end
+diff --git c/spec/policies/solution_authorizer_spec.rb w/spec/policies/solution_authorizer_spec.rb
+new file mode 100644
+index 0000000..8e86ffa
+--- /dev/null
++++ w/spec/policies/solution_authorizer_spec.rb
+@@ -0,0 +1,18 @@
++# frozen_string_literal: true
++require 'rails_helper'
++
++describe SolutionAuthorizer do
++  subject(:solution_policy) { described_class.new(user, solution) }
++
++  describe '#authorized?' do
++    context 'with solution' do
++      subject { solution_policy.authorized? }
++
++      let(:user) { create(:user) }
++      let(:started_challenge) { create(:started_challenge, user: user) }
++      let(:solution) { create(:solution, started_challenge: started_challenge) }
++
++      it { is_expected.to be_truthy }
++    end
++  end
++end

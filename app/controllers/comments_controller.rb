@@ -2,9 +2,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   def create
-    @challenge = Challenge.find(params[:challenge_id])
-    @challenge.comments
-              .create(body: params[:comment][:body], user: current_user)
-    redirect_to @challenge
+    redirect_to current_user.comments
+    .create(commentable_type: params[:comment][:commentable_type],
+    commentable_id: params[:comment][:commentable_id],
+    body: params[:comment][:body]
+    ).commentable
   end
 end

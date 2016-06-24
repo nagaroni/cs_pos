@@ -6,15 +6,20 @@ class SolutionAuthorizer
   end
 
   def authorized?
-    started_challenge.solution if !!started_challenge
+    owner? || solution?
   end
 
   private
 
-  def started_challenge
+  def solution?
     user
       .started_challenges
       .find_by(challenge: solution.started_challenge.challenge)
+      .try(:solution)
+  end
+
+  def owner?
+    solution.user == user
   end
 
   attr_reader :user, :solution

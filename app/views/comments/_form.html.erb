@@ -1,0 +1,7 @@
+<%= form_for [model, model.comments.build] do |f| %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <%= f.hidden_field :commentable_type, value: model.class.to_s %>
+  <%= f.hidden_field :commentable_id, value: model.id %>
+  <%= f.submit %>
+<% end %>

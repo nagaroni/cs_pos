@@ -2,11 +2,9 @@
 require 'rails_helper'
 
 feature 'User access other\'s solution' do
-  context 'without create his own solution' do
+  context 'without his own solution' do
     scenario 'and is redirect to root page' do
-      user = create(:user, email: 'mail@mail.com')
-      started_challenge = create(:started_challenge, user: user)
-      solution = create(:solution, started_challenge: started_challenge)
+      solution = create(:solution)
       login_as create(:user)
 
       visit solution_path(solution)
@@ -17,8 +15,8 @@ feature 'User access other\'s solution' do
     end
   end
 
-  context 'after create his own solution' do
-    scenario 'and see it successfully' do
+  context 'with his own solution' do
+    scenario 'and sees it successfully' do
       user = create(:user)
       started_challenge = create(:started_challenge, user: user)
       solution = create(:solution, started_challenge: started_challenge)

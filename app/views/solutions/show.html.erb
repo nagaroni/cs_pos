@@ -1,1 +1,4 @@
 Parabéns, desafio <%= @solution.started_challenge.challenge.title %>, concluído!
+
+<%= render partial: 'comments/comments', locals: { model: @solution } %>
+<%= render partial: 'comments/form', locals: { model: @solution } %>
